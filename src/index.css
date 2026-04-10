@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme {
+  --color-onyx-bg: #08080F;
+  --color-onyx-card: #0F0F1A;
+  --color-onyx-surface: #1A1A2E;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+}
+
+/* 
+  IMPORTANT: Do NOT use a bare `*` reset here. 
+  Tailwind v4 places utilities inside @layer, so unlayered `* { padding: 0 }` 
+  overrides ALL Tailwind padding/margin utilities, breaking the layout.
+  Tailwind's preflight already handles box-sizing and sensible defaults.
+*/
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #08080F;
+    color: white;
+    overflow-x: hidden;
+  }
+}
+
+/* ======== GLASS CARD ======== */
+.glass-card {
+  background: rgba(15, 15, 26, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+}
+
+/* ======== SHIMMER TEXT ======== */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #a78bfa 0%,
+    #c4b5fd 25%,
+    #ffffff 50%,
+    #c4b5fd 75%,
+    #a78bfa 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ======== CHARACTER WALKING ANIMATIONS ======== */
+@keyframes armSwingLeft {
+  0%, 100% { transform: rotate(20deg); }
+  50% { transform: rotate(-20deg); }
+}
+
+@keyframes armSwingRight {
+  0%, 100% { transform: rotate(-20deg); }
+  50% { transform: rotate(20deg); }
+}
+
+@keyframes legSwingLeft {
+  0%, 100% { transform: rotate(15deg); }
+  50% { transform: rotate(-15deg); }
+}
+
+@keyframes legSwingRight {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}
+
+.arm-left {
+  animation: armSwingLeft 0.6s ease-in-out infinite;
+}
+
+.arm-right {
+  animation: armSwingRight 0.6s ease-in-out infinite;
+}
+
+.leg-left {
+  animation: legSwingLeft 0.6s ease-in-out infinite;
+}
+
+.leg-right {
+  animation: legSwingRight 0.6s ease-in-out infinite;
+}
+
+/* ======== SCAN ANIMATION ======== */
+@keyframes scanBeam {
+  0%, 100% { transform: translateY(4px); }
+  50% { transform: translateY(24px); }
+}
+
+.animate-scan {
+  animation: scanBeam 2s ease-in-out infinite;
+}
+
+/* ======== MARQUEE ======== */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track:hover .marquee-inner {
+  animation-play-state: paused;
+}
+
+/* ======== FLOATING ORB ======== */
+@keyframes float {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+/* ======== PULSE DOT ======== */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+/* ======== GROW BAR ======== */
+@keyframes growUp {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.animate-grow-up {
+  transform-origin: bottom;
+  animation: growUp 1.2s ease-out forwards;
+}
+
+/* ======== SCROLLBAR ======== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #08080F;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.5);
+}
